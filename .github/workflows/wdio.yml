@@ -3,10 +3,10 @@ name: Run WDIO Tests
 on:
   push:
     branches:
-      - main # Trigger on push to the main branch
+      - master # Trigger on push to the main branch
   pull_request:
     branches:
-      - main # Trigger on PR to main
+      - master # Trigger on PR to main
 
 jobs:
   test:
