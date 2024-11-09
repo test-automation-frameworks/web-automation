@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20' # Set Node.js version
+          node-version: '20' # Set Node.js version to 16
 
       - name: Install dependencies
         run: |
@@ -27,4 +27,10 @@ jobs:
 
       - name: Run WDIO tests
         run: |
-          ENV=staging npm run test
+          npx wdio run wdio.conf.js  # Run WebDriverIO tests
+
+      - name: Upload Allure report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report # Upload the generated Allure report directory
