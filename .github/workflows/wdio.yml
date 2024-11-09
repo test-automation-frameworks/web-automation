@@ -1,4 +1,4 @@
-name: Run WDIO Tests
+name: Run Automated Juice Shope Tests
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - master # Trigger on PR to main
 
 jobs:
-  test:
+  run-tests:
     runs-on: ubuntu-latest # Use a Linux runner
 
     steps:
@@ -34,3 +34,4 @@ jobs:
         with:
           name: allure-report
           path: allure-report # Upload the generated Allure report directory
+        if: always()
