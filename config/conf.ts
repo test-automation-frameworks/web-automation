@@ -9,8 +9,8 @@ type Environment = keyof typeof environments; // 'local' | 'staging' | 'prod'
 const ENV: Environment = (process.env.ENV as Environment) || 'staging';
 
 const URL = environments[ENV];
-const URI = environments[ENV]; // Same as URL, you can use just one if they are identical
+const API_HOST = environments[ENV]; // Same as URL, you can use just one if they are identical
 
 const elementTimeout = 10000;
 
-export { URL, URI, elementTimeout };
+export { URL, API_HOST, elementTimeout };

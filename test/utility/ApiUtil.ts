@@ -1,4 +1,4 @@
-import { URI } from '../../config/conf';
+import { API_HOST } from '../../config/conf';
 import CommonUtil from './CommonUtil';
 import axios from 'axios';
 import ReporterUtil from './ReporterUtil';
@@ -7,8 +7,10 @@ const reporter = new ReporterUtil();
 
 export default class ApiUtil {
 	static async getCardsCount(): Promise<any> {
-		let response = await axios.get(`${URI}/rest/products/search?q=`);
-		return response.data.length;
+		let response = await axios.get(`${API_HOST}/rest/products/search?q=`, {
+			timeout: 10000,
+		});
+		return response.data.data.length;
 	}
 
 	static async createUser(): Promise<any> {
@@ -16,7 +18,7 @@ export default class ApiUtil {
 		let email = CommonUtil.randomEmailId();
 		let password = CommonUtil.randomPassword();
 		let response = await axios.post(
-			`${URI}/api/Users/`,
+			`${API_HOST}/api/Users/`,
 			{
 				email,
 				password,

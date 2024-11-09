@@ -280,7 +280,7 @@ export const config: WebdriverIO.Config = {
 	) {
 		if (passed == false) {
 			try {
-				const filename = 'screnshot.png';
+				const filename = 'screenshot.png';
 				const outputFile = path.join(__dirname, filename);
 				await browser.saveScreenshot(outputFile);
 				allureReporter.addAttachment(
