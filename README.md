@@ -46,6 +46,7 @@ ENV= staging npm run test
 
 ```shell
 brew install allure
+Open directory where allure-report folder is present
 allure open
 ```
 
