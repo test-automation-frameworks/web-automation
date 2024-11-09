@@ -1,0 +1,6 @@
+allure-results/
+allure-report/
+node_modules/
+automation-util.log
+screenshot.png
+.DS_Store

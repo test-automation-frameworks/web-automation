@@ -1,0 +1,30 @@
+name: Run WDIO Tests
+
+on:
+  push:
+    branches:
+      - main # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main # Trigger on PR to main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest # Use a Linux runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Set Node.js version
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run WDIO tests
+        run: |
+          ENV=staging npm run test
