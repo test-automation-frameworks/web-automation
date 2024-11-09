@@ -27,7 +27,7 @@ jobs:
 
       - name: Run WDIO tests
         run: |
-          npx wdio run wdio.conf.js  # Run WebDriverIO tests
+          npm run test
 
       - name: Upload Allure report as artifact
         uses: actions/upload-artifact@v3

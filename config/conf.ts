@@ -6,7 +6,7 @@ const environments = {
 
 type Environment = keyof typeof environments; // 'local' | 'staging' | 'prod'
 
-const ENV: Environment = (process.env.ENV as Environment) || 'local';
+const ENV: Environment = (process.env.ENV as Environment) || 'staging';
 
 const URL = environments[ENV];
 const URI = environments[ENV]; // Same as URL, you can use just one if they are identical

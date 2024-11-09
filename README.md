@@ -24,7 +24,11 @@ This project is to automate the FE E2E test cases. It also uses APIs whereever i
 - Test configuration are saved at `wdio.conf.ts`
 - Test reports generates at `allure-reports`
 
+> **Note:** While Allure is used here for reporting, I prefer [ReportPortal](reportportal.io) for detailed reporting and analysis. However, due to hosting requirements for ReportPortal, Allure was used in this project for simplicity.
+
 ### Env variables
+
+Vriables are stored in the `.env`file
 
 - `ENV` ['prod','staging','local'] to run tests in the specific environment
 - `logger` to log the logs in the console default value is true
