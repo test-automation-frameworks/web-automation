@@ -24,6 +24,7 @@ export default class ReporterUtil {
 	}
 
 	logStep(message: string) {
+		this.log(message, LEVEL.INFO);
 		allureReporter.addStep(message);
 	}
 }

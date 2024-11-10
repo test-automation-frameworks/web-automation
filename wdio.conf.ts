@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs';
 var allure = require('allure-commandline');
 dotenv.config();
+const isRetry = process.env.RETRY === 'false' ? false : true;
 const isHeadless = process.env.HEADLESS === 'true';
 const commonArgs = [
 	'--disable-gpu',
@@ -144,7 +145,11 @@ export const config: WebdriverIO.Config = {
 
 	//
 	// The number of times to retry the entire specfile when it fails as a whole
-	// specFileRetries: 1,
+	reporterSyncInterval: 1000,
+	reporterSyncTimeout: 1 * 30 * 1000,
+	specFileRetries: isRetry ? 1 : 0,
+	specFileRetriesDelay: 10,
+	specFileRetriesDeferred: false,
 	//
 	// Delay in seconds between the spec file retry attempts
 	// specFileRetriesDelay: 0,

@@ -45,7 +45,7 @@ class AddToBasketPage extends Page {
 		this.logStep('Getting cart price');
 		let priceString = await this.getText(BasketPageObjects.basket.cartPrice);
 		let price = parseFloat(priceString.replace(/[^0-9.-]+/g, ''));
-		return price;
+		return parseFloat(price.toFixed(2));
 	}
 
 	async getProductPrice(productName: string) {
@@ -96,6 +96,47 @@ class AddToBasketPage extends Page {
 		);
 		let balance = parseFloat(balanceString.replace(/[^0-9.-]+/g, ''));
 		return balance;
+	}
+
+	async addNewCard(cardNumber: string = '4536546323254526') {
+		this.logStep('Adding new card');
+		await this.clickElement(BasketPageObjects.card.addNewCardButton);
+		await this.wait(2000);
+		await this.setValue(BasketPageObjects.card.name, 'Test Card');
+		await this.setValue(BasketPageObjects.card.cardNumber, cardNumber);
+		await this.selectMonth();
+		await this.selectYear();
+		await this.clickElement(BasketPageObjects.card.submitButton);
+	}
+	async verifyCardAddedSuccessMessage(cardLast4Digits: string = '4526') {
+		this.logStep('Verifying card added success message');
+		await this.waitForElementToBeDisplayed(
+			BasketPageObjects.card.successMessage(cardLast4Digits)
+		);
+	}
+
+	async checkout() {
+		this.logStep('Checking out');
+		await this.clickElement(BasketPageObjects.card.selectCard('Test Card'));
+		await this.clickElement(BasketPageObjects.address.continueButton);
+		await this.clickElement(BasketPageObjects.checkout.checkoutButton);
+	}
+
+	async verifyOrderSuccessMessage() {
+		this.logStep('Verifying order success message');
+		await this.waitForElementToBeDisplayed(
+			BasketPageObjects.checkout.successMessage
+		);
+	}
+
+	async selectYear(year: string = '2088') {
+		this.logStep('Selecting year');
+		await BasketPageObjects.card.expiryYear.selectByAttribute('value', year);
+	}
+
+	async selectMonth(month = '2') {
+		this.logStep('Selecting month');
+		await BasketPageObjects.card.expiryMonth.selectByAttribute('value', month);
 	}
 }
 

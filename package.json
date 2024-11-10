@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "npx wdio run ./wdio.conf.ts",
-		"singleTest": "npx wdio run ./wdio.conf.ts --spec ./test/specs/homePageTests.e2e.ts"
+		"singleTest": "npx wdio run ./wdio.conf.ts --spec ./test/specs/addToCartTests.e2e.ts"
 	},
 	"author": "",
 	"license": "ISC",

@@ -98,6 +98,52 @@ class BasketPageObjects {
 			return $("//span[text()='Wallet Balance']/../span[2]");
 		},
 	};
+
+	card = {
+		get addNewCardButton() {
+			return $('mat-panel-title*=Add new card');
+		},
+
+		get name() {
+			return $("//mat-label[text()='Name']/../../..//input");
+		},
+
+		get cardNumber() {
+			return $("//mat-label[text()='Card Number']/../../..//input");
+		},
+
+		get expiryMonth() {
+			return $("//mat-label[text()='Expiry Month']/../../..//select");
+		},
+
+		get expiryYear() {
+			return $("//mat-label[text()='Expiry Year']/../../..//select");
+		},
+
+		get submitButton() {
+			return $('#submitButton');
+		},
+
+		selectCard(name: string) {
+			return $(`//mat-cell[text()='${name}']/..//label`);
+		},
+
+		successMessage(cardNumber: string) {
+			return $(
+				`span*=Your card ending with ${cardNumber} has been saved for your convenience.`
+			);
+		},
+	};
+
+	checkout = {
+		get checkoutButton() {
+			return $('#checkoutButton');
+		},
+
+		get successMessage() {
+			return $('h1=Thank you for your purchase!');
+		},
+	};
 }
 
 export default new BasketPageObjects();

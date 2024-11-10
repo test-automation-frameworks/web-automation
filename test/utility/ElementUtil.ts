@@ -1,4 +1,4 @@
-import { elementTimeut } from '../../config/conf';
+import { elementTimeout } from '../../config/conf';
 import ReporterUtil from './ReporterUtil';
 
 export default class ElementUtil extends ReporterUtil {
@@ -23,7 +23,7 @@ export default class ElementUtil extends ReporterUtil {
 
 	async waitForElementToBeDisplayed(
 		element: ChainablePromiseElement,
-		timeOut: number = elementTimeut
+		timeOut: number = elementTimeout
 	) {
 		this.log(`Waiting for element to be displayed: ${await element.selector}`);
 		await element.waitForDisplayed({ timeout: timeOut });

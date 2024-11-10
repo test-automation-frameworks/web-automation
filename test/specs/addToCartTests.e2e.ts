@@ -7,7 +7,7 @@ describe('Juice Shop Add to Cart Tests', () => {
 		'Apple Juice (1000ml)',
 		'Apple Pomace',
 		'Banana Juice (1000ml)',
-		'Best Juice Shop Salesman Artwork',
+		'Eggfruit Juice (500ml)',
 		'Carrot Juice (1000ml)',
 	];
 	let updatedPrice = 0;
@@ -42,9 +42,9 @@ describe('Juice Shop Add to Cart Tests', () => {
 		await AddToBasketPage.increaseProductQuantity(products[1]);
 		productPrice1 = await AddToBasketPage.getProductPrice(products[0]);
 		const productPrice2 = await AddToBasketPage.getProductPrice(products[1]);
-		const expectedPriceAfterIncrease =
-			initialPrice + productPrice1 + productPrice2;
+		const calculatedPice = initialPrice + productPrice1 + productPrice2;
 
+		const expectedPriceAfterIncrease = parseFloat(calculatedPice.toFixed(2));
 		// Log and verify the updated cart price after increasing quantities
 		console.log(
 			'Expected price after increasing quantity:',
@@ -58,7 +58,8 @@ describe('Juice Shop Add to Cart Tests', () => {
 	it('verify user is able to reduce the product quantity in the cart and verify price change', async () => {
 		// Reduce quantity of the first product and calculate expected price
 		await AddToBasketPage.reduceProductQuantity(products[0]);
-		const expectedPriceAfterReduction = updatedPrice - productPrice1;
+		const calculatedPice = updatedPrice - productPrice1;
+		const expectedPriceAfterReduction = parseFloat(calculatedPice.toFixed(2));
 
 		// Log and verify the updated cart price after reducing quantities
 		console.log(
@@ -77,5 +78,8 @@ describe('Juice Shop Add to Cart Tests', () => {
 		await AddToBasketPage.selectDeliverySpeed();
 		let walletBalance = await AddToBasketPage.getWalletBalance();
 		expect(walletBalance).toEqual(0.0);
+		await AddToBasketPage.addNewCard('4536546323254526');
+		await AddToBasketPage.verifyCardAddedSuccessMessage('4526');
+		await AddToBasketPage.checkout();
 	});
 });
