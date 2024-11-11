@@ -12,6 +12,7 @@ This project is to automate the FE E2E test cases. It also uses APIs whereever i
 - mocha (test runner)
 - github actions (CICD)
 - winston for logging
+- Kubernetes to run tests in scale
 
 ## Folder structure
 
@@ -34,12 +35,25 @@ Vriables are stored in the `.env`file
 - `logger` to log the logs in the console default value is true
 - `LOG_LEVEL` default is `info`
 - `HEADLESS` to run test in the headless mode
+- `BROWSER` ['chrome','edge','safari','firefox'] default value is `chrome`
+- `isRetry` to trigger the retry of failing tests default value is `true`
+- `GRID_HOST` if running tests on k8 grid
 
 ### Steps to run test
 
 ```shell
 npm install
 ENV= staging npm run test
+```
+
+### Steps to run test in k8 cluster
+
+You need to setup the selenium grid on k8 cluster [steps](https://github.com/SeleniumHQ/docker-selenium/tree/trunk/charts/selenium-grid)
+
+```shell
+set the ENV GRID_HOST
+npm install
+ENV= staging npm run grid:test
 ```
 
 ### Steps to open report

@@ -3,7 +3,7 @@ import CommonUtil from '../utility/CommonUtil';
 import LoginPage from '../pages/LoginPage';
 
 describe('Juice shop registration page tests', () => {
-	it('verify field validation error messages', async () => {
+	it.only('verify field validation error messages', async () => {
 		await RegistrationPage.open();
 		await RegistrationPage.dismissWelcomePopup();
 

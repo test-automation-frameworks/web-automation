@@ -1,4 +1,4 @@
-import { URL } from './config/conf';
+import { URL, capabilities } from './config/conf';
 import dotenv from 'dotenv';
 import allureReporter from '@wdio/allure-reporter';
 import path from 'path';
@@ -6,16 +6,6 @@ import fs from 'fs';
 var allure = require('allure-commandline');
 dotenv.config();
 const isRetry = process.env.RETRY === 'false' ? false : true;
-const isHeadless = process.env.HEADLESS === 'true';
-const commonArgs = [
-	'--disable-gpu',
-	'--window-size=1440,900',
-	'--start-maximized',
-	'--disable-infobars',
-	'--disable-notifications',
-	'--disable-default-apps',
-	'--start-fullscreen',
-];
 
 export const config: WebdriverIO.Config = {
 	//
@@ -68,18 +58,7 @@ export const config: WebdriverIO.Config = {
 	// Sauce Labs platform configurator - a great tool to configure your capabilities:
 	// https://saucelabs.com/platform/platform-configurator
 	//
-	capabilities: [
-		{
-			// capabilities for local browser web tests
-			browserName: 'chrome', // or "firefox", "microsoftedge", "safari"
-			browserVersion: 'stable',
-			'goog:chromeOptions': {
-				args: isHeadless
-					? ['--headless=true', ...commonArgs]
-					: ['--start-maximized', ...commonArgs],
-			},
-		},
-	],
+	capabilities: [capabilities()],
 
 	//
 	// ===================
