@@ -1,6 +1,8 @@
 <!-- @format -->
 
-# Juice shop test automation framework
+# WebdriverIO test automation framework
+
+![Screenshot](wdio.png)
 
 This project is to automate the FE E2E test cases. It also uses APIs whereever its needed.
 
